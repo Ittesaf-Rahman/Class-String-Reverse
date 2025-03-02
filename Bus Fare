@@ -1,0 +1,73 @@
+class BusFareCalculator:
+    """
+    A class to calculate bus fares based on distance and passenger type.
+    """
+
+    def __init__(self, base_fare=10, per_km_rate=2.5, student_discount=0.5, senior_discount=0.3):
+        """
+        Initializes the BusFareCalculator.
+
+        Args:
+            base_fare (float): The base fare for any trip.
+            per_km_rate (float): The fare per kilometer.
+            student_discount (float): Discount percentage for students.
+            senior_discount (float): Discount percentage for seniors.
+        """
+        self.base_fare = base_fare
+        self.per_km_rate = per_km_rate
+        self.student_discount = student_discount
+        self.senior_discount = senior_discount
+
+    def calculate_fare(self, distance, passenger_type="adult"):
+        """
+        Calculates the bus fare.
+
+        Args:
+            distance (float): The distance traveled in kilometers.
+            passenger_type (str): The type of passenger ("adult", "student", or "senior").
+
+        Returns:
+            float: The calculated bus fare.
+        """
+
+        if distance < 0:
+            return "Invalid distance."
+
+        fare = self.base_fare + (distance * self.per_km_rate)
+
+        if passenger_type.lower() == "student":
+            fare *= (1 - self.student_discount)
+        elif passenger_type.lower() == "senior":
+            fare *= (1 - self.senior_discount)
+        elif passenger_type.lower() != "adult":
+            return "Invalid passenger type."
+
+        return round(fare, 2)
+
+# Example Usage:
+calculator = BusFareCalculator(base_fare=15, per_km_rate=3, student_discount=0.4, senior_discount=0.25)
+
+distance1 = 20
+passenger1 = "adult"
+fare1 = calculator.calculate_fare(distance1, passenger1)
+print(f"Fare for {passenger1} traveling {distance1} km: ${fare1}")
+
+distance2 = 15
+passenger2 = "student"
+fare2 = calculator.calculate_fare(distance2, passenger2)
+print(f"Fare for {passenger2} traveling {distance2} km: ${fare2}")
+
+distance3 = 30
+passenger3 = "senior"
+fare3 = calculator.calculate_fare(distance3, passenger3)
+print(f"Fare for {passenger3} traveling {distance3} km: ${fare3}")
+
+distance4 = -5
+passenger4 = "adult"
+fare4 = calculator.calculate_fare(distance4, passenger4)
+print(f"Fare for {passenger4} traveling {distance4} km: {fare4}")
+
+distance5 = 10
+passenger5 = "child"
+fare5 = calculator.calculate_fare(distance5, passenger5)
+print(f"Fare for {passenger5} traveling {distance5} km: {fare5}")
