@@ -1,0 +1,61 @@
+class StringReverser:
+    """A class to reverse a string."""
+
+    def __init__(self, input_string):
+        """
+        Initializes the StringReverser object.
+
+        Args:
+            input_string (str): The string to be reversed.
+        """
+        self.input_string = input_string
+
+    def reverse_string(self):
+        """
+        Reverses the input string.
+
+        Returns:
+            str: The reversed string.
+        """
+        return self.input_string[::-1]
+
+    def reverse_string_using_loop(self):
+        """
+        Reverses the input string using a for loop.
+
+        Returns:
+            str: The reversed string.
+        """
+        reversed_string = ""
+        for char in reversed(self.input_string):
+            reversed_string += char
+        return reversed_string
+
+    def reverse_string_using_list(self):
+      """
+      Reverses the input string using a list.
+
+      Returns:
+          str: The reversed string.
+      """
+      char_list = list(self.input_string)
+      char_list.reverse()
+      return "".join(char_list)
+
+# Example usage:
+my_string = "hello world"
+reverser = StringReverser(my_string)
+
+reversed_string_slice = reverser.reverse_string()
+print(f"Reversed string (using slicing): {reversed_string_slice}")
+
+reversed_string_loop = reverser.reverse_string_using_loop()
+print(f"Reversed string (using loop): {reversed_string_loop}")
+
+reversed_string_list = reverser.reverse_string_using_list()
+print(f"Reversed string (using list): {reversed_string_list}")
+
+my_other_string = "Python is fun"
+other_reverser = StringReverser(my_other_string)
+
+print(f"Another Reversed string (using slicing): {other_reverser.reverse_string()}")
